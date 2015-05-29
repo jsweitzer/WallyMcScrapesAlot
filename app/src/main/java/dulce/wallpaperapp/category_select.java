@@ -1,6 +1,5 @@
 package dulce.wallpaperapp;
 
-
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,11 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
 public class category_select extends ActionBarActivity {
-    public static String nature = "http://www.reddit.com/r/earthporn";
+
     public final static String EXTRA_MESSAGE = "com.desnuts.AsyncPracticeProject.MESSAGE";
-    private String starterUrl = "http://www.reddit.com/r/art";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +38,11 @@ public class category_select extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //these three onClicks send the appropriate starterUrls over to image_browser//
     public void nature(View view){
         String starterUrl = "http://www.reddit.com/r/earthporn";
         Intent intent = new Intent(this, image_browser.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
-        //intent.putExtra(starterUrl, 1);
-        //sendBroadcast(intent);
         startActivity(intent);
     }
     public void aww(View view){
