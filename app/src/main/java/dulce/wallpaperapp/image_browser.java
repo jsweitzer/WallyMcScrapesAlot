@@ -79,7 +79,7 @@ public class image_browser extends ActionBarActivity {
                 Elements aList = doc.select("a");
                 for(Element link : aList){
                     String href = link.attr("href");
-                    if(href.contains("imgur.com")&&!href.contains("domain")&&href.contains(".jp")){
+                    if(!href.contains("domain")&&href.contains(".jpg")){
                         if(!linkList.contains(href)){
                             linkList.add(href);
                         }
