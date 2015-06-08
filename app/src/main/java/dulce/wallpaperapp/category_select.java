@@ -57,4 +57,22 @@ public class category_select extends ActionBarActivity {
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
+    public void random(View view){
+        String starterUrl = "http://www.reddit.com/r/wallpapers";
+        Intent intent = new Intent(this, image_browser.class);
+        intent.putExtra(EXTRA_MESSAGE, starterUrl);
+        startActivity(intent);
+    }
+    public void quote(View view){
+        String starterUrl = "http://www.reddit.com/r/quotesporn";
+        Intent intent = new Intent(this, image_browser.class);
+        intent.putExtra(EXTRA_MESSAGE, starterUrl);
+        startActivity(intent);
+    }
+    public void cars(View view){
+        String starterUrl = "http://www.reddit.com/r/carporn";
+        Intent intent = new Intent(this, image_browser.class);
+        intent.putExtra(EXTRA_MESSAGE, starterUrl);
+        startActivity(intent);
+    }
 }

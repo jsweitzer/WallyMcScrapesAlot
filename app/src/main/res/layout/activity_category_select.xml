@@ -30,5 +30,36 @@
         android:layout_centerHorizontal="true"
         android:onClick="space"
         android:background="#ff000000" />
+    <Button
+        android:id="@+id/random"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_random"
+        android:onClick="random"
+        android:background="#ff000000"
+        android:layout_alignTop="@+id/quotes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/quotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_quote"
+        android:onClick="quote"
+        android:background="#ff000000"
+        android:layout_below="@+id/space_button"
+        android:layout_alignLeft="@+id/space_button"
+        android:layout_alignStart="@+id/space_button"
+        android:layout_marginTop="52dp" />
+    <Button
+        android:id="@+id/cars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_car"
+        android:onClick="cars"
+        android:background="#ff000000"
+        android:layout_alignTop="@+id/quotes"
+        android:layout_alignLeft="@+id/aww_button"
+        android:layout_alignStart="@+id/aww_button" />
 
 </RelativeLayout>
