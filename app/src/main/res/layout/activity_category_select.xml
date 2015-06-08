@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:onClick="nature"/>
+        android:onClick="nature"
+        android:background="#ff000000" />
     <Button
         android:id="@+id/aww_button"
         android:drawableLeft="@drawable/ic_kitten"
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:onClick="aww"/>
+        android:onClick="aww"
+        android:background="#ff000000" />
     <Button
         android:id="@+id/space_button"
         android:drawableLeft="@drawable/ic_moon"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="space"/>
+        android:onClick="space"
+        android:background="#ff000000" />
 
 </RelativeLayout>
