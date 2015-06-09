@@ -24,10 +24,10 @@
         <activity
             android:name=".image_browser"
             android:label="@string/title_activity_image_browser"
-            android:parentActivityName=".category_select" >
+            android:parentActivityName=".GridViewActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="dulce.wallpaperapp.category_select" />
+                android:value="dulce.wallpaperapp.GridViewActivity" />
         </activity>
         <activity
             android:name=".gridViewThumbs"

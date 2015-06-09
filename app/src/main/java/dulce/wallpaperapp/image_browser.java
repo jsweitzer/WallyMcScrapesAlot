@@ -62,8 +62,8 @@ public class image_browser extends ActionBarActivity {
         //onCreate receives intent from category_select and//
         //passes the string extra to getUrlTask//
         Intent intent = getIntent();
-        starterUrl = intent.getStringExtra(category_select.EXTRA_MESSAGE);
-        getUrlTask task = new getUrlTask();
+        starterUrl = intent.getStringExtra(GridViewActivity.URL_TO_BROWSER);
+        getImage task = new getImage();
         task.execute(starterUrl);
     }
         //getUrlTask parses some html and generates a list of urls
@@ -145,7 +145,7 @@ public class image_browser extends ActionBarActivity {
         protected Bitmap doInBackground(String... params) {
             ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
             ImageLoader.getInstance().init(config.build());
-            Bitmap result = ImageLoader.getInstance().loadImageSync(url);
+            Bitmap result = ImageLoader.getInstance().loadImageSync(starterUrl);
             return result;
         }
         @Override
@@ -154,6 +154,7 @@ public class image_browser extends ActionBarActivity {
             //the image is shown in the image view, but not set as the wallpaper//
             imageView.setImageBitmap(result);
             pd.setVisibility(View.INVISIBLE);
+            Toast.makeText(context, starterUrl, Toast.LENGTH_SHORT).show();
         }
     }
 

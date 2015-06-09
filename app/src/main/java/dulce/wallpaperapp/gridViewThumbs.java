@@ -40,7 +40,7 @@ public class gridViewThumbs extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_browser);
+        setContentView(R.layout.loading_screen);
         //pd = (ProgressBar) findViewById(R.id.progress);
         //onCreate receives intent from category_select and//
         //passes the string extra to getUrlTask//
@@ -136,6 +136,10 @@ public class gridViewThumbs extends Activity {
                 Intent intent = new Intent(context, GridViewActivity.class);
                 startActivity(intent);
 
+        }
+
+        public String getBigUrl(int i){
+            return bigList.get(i);
         }
     }
 }
