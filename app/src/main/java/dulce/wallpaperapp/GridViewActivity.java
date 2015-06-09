@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
 
-public class GridViewActivity extends Activity {
+public class GridViewActivity extends ActionBarActivity {
 
     public static String URL_TO_BROWSER = category_select.EXTRA_MESSAGE;
     public static int index = 0;

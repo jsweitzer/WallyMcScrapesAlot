@@ -110,7 +110,6 @@ public class image_browser extends ActionBarActivity {
         @Override
         protected void onPostExecute(Bitmap result){
             if(select == -1){
-                
                 select = GridViewActivity.index;
             }
             currentBitmap = result;

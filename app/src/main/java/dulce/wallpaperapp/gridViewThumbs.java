@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+
 public class gridViewThumbs extends Activity {
 
     private ProgressBar pb;
@@ -44,6 +45,8 @@ public class gridViewThumbs extends Activity {
         //pd = (ProgressBar) findViewById(R.id.progress);
         //onCreate receives intent from category_select and//
         //passes the string extra to getUrlTask//
+        thumbList.clear();
+        bigList.clear();
         Intent intent = getIntent();
         starterUrl = intent.getStringExtra(category_select.EXTRA_MESSAGE);
         getBigSmallUrlList task = new getBigSmallUrlList();
@@ -74,9 +77,12 @@ public class gridViewThumbs extends Activity {
                     }else if(bigLink.contains("imgur")&&!bigLink.contains(".jpg")&&!bigLink.contains("domain")){
                         bigList.add(bigLink+".jpg");
                         thumbList.add("http:"+thumbLink);
-                    }else if(!bigLink.contains("domain")&&bigLink.contains(".jpg")){
+                    }else if(!bigLink.contains("domain")&&bigLink.contains(".jpg")&&!thumbLink.contains("http:")){
                         bigList.add(bigLink);
                         thumbList.add("http:"+thumbLink);
+                    }else if(!bigLink.contains("domain")&&bigLink.contains(".jpg")&&thumbLink.contains("http:")){
+                        bigList.add(bigLink);
+                        thumbList.add(thumbLink);
                     }
                 }
             }catch(IOException e){
@@ -140,6 +146,11 @@ public class gridViewThumbs extends Activity {
 
         public String getBigUrl(int i){
             return bigList.get(i);
+        }
+
+        public void clearUrls(){
+            bigList.clear();
+            thumbList.clear();
         }
     }
 }

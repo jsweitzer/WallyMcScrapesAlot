@@ -15,6 +15,7 @@ public class category_select extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_select);
+
     }
 
     @Override
@@ -38,7 +39,7 @@ public class category_select extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    //these onClicks send the appropriate starterUrls over to image_browser//
+    //seed urls to generate image url lists//
     public void nature(View view){
         String starterUrl = "http://www.reddit.com/r/earthporn";
         Intent intent = new Intent(this, gridViewThumbs.class);
@@ -70,7 +71,7 @@ public class category_select extends ActionBarActivity {
         startActivity(intent);
     }
     public void cars(View view){
-        String starterUrl = "http://www.reddit.com/r/verticalwallpapers";
+        String starterUrl = "http://www.reddit.com/r/pics";
         Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
