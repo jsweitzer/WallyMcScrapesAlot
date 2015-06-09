@@ -64,13 +64,13 @@ public class category_select extends ActionBarActivity {
         startActivity(intent);
     }
     public void quote(View view){
-        String starterUrl = "http://www.reddit.com/r/quotesporn";
+        String starterUrl = "http://www.reddit.com/r/specart";
         Intent intent = new Intent(this, image_browser.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void cars(View view){
-        String starterUrl = "http://www.reddit.com/r/carporn";
+        String starterUrl = "http://www.reddit.com/r/verticalwallpapers";
         Intent intent = new Intent(this, image_browser.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);

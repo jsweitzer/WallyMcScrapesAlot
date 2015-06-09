@@ -6,11 +6,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.app.WallpaperManager;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,10 +25,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.content.Intent;
+import java.lang.Object;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -177,10 +186,49 @@ public class image_browser extends ActionBarActivity {
     }
     //onClickSave sets the image currently being displayed as the background//
     public void onClickSave(View view){
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File file = new File(path, "currentPic.png");
         try {
-            WallpaperManager.getInstance(context).setBitmap(currentBitmap);
+            path.mkdirs();
+            OutputStream out = new FileOutputStream(file);
+            currentBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.close();
+            Uri uri = Uri.fromFile(file);
+            Uri content_uri = getImageContentUri(this, file);
+            //WallpaperManager.getInstance(context).setBitmap(currentBitmap);
+            Intent intent = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(content_uri);
+            startActivity(intent);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
-}
+    public static Uri getImageContentUri(Context context, File imageFile){
+
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[] {MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=?",
+                new String[] {filePath}, null);
+
+        if (cursor != null && cursor.moveToFirst()){
+
+            int id = cursor.getInt(cursor
+            .getColumnIndex(MediaStore.MediaColumns._ID));
+          Uri baseUri = Uri.parse("content://media/external/images/media");
+          return Uri.withAppendedPath(baseUri, "" + id);
+
+        }else{
+            if(imageFile.exists()) {
+
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return context.getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            }else{
+                    return null;
+                }
+            }
+        }
+    }
+
