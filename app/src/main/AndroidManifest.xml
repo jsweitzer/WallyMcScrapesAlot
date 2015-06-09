@@ -29,6 +29,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="dulce.wallpaperapp.category_select" />
         </activity>
+        <activity
+            android:name=".gridViewThumbs"
+            android:label="@string/title_activity_image_browser"
+            android:parentActivityName=".category_select" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dulce.wallpaperapp.category_select" />
+        </activity>
+        <activity
+            android:name=".GridViewActivity"
+            android:label="@string/title_activity_image_browser"
+            android:parentActivityName=".category_select" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dulce.wallpaperapp.category_select" />
+        </activity>
     </application>
 
 </manifest>

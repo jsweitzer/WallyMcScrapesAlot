@@ -38,40 +38,40 @@ public class category_select extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    //these three onClicks send the appropriate starterUrls over to image_browser//
+    //these onClicks send the appropriate starterUrls over to image_browser//
     public void nature(View view){
         String starterUrl = "http://www.reddit.com/r/earthporn";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void aww(View view){
         String starterUrl = "http://www.reddit.com/r/aww";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void space(View view){
         String starterUrl = "http://www.reddit.com/r/spaceporn";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void random(View view){
         String starterUrl = "http://www.reddit.com/r/wallpapers";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void quote(View view){
         String starterUrl = "http://www.reddit.com/r/specart";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
     public void cars(View view){
         String starterUrl = "http://www.reddit.com/r/verticalwallpapers";
-        Intent intent = new Intent(this, image_browser.class);
+        Intent intent = new Intent(this, gridViewThumbs.class);
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }

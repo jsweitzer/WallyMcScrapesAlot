@@ -6,7 +6,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.app.WallpaperManager;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -25,13 +24,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.content.Intent;
-import java.lang.Object;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -84,7 +80,7 @@ public class image_browser extends ActionBarActivity {
                         .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
                         .timeout(3000)
                         .get();
-                //select and store links to .jpg files on imgur
+                //select and store links to .jpg files
                 Elements aList = doc.select("a");
                 for(Element link : aList){
                     String href = link.attr("href");
@@ -205,7 +201,9 @@ public class image_browser extends ActionBarActivity {
     public static Uri getImageContentUri(Context context, File imageFile){
 
         String filePath = imageFile.getAbsolutePath();
+
         Cursor cursor = context.getContentResolver().query(
+
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 new String[] {MediaStore.Images.Media._ID},
                 MediaStore.Images.Media.DATA + "=?",
@@ -223,8 +221,10 @@ public class image_browser extends ActionBarActivity {
 
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.Images.Media.DATA, filePath);
+
                 return context.getContentResolver().insert(
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
             }else{
                     return null;
                 }
