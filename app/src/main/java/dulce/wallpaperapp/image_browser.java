@@ -47,7 +47,7 @@ public class image_browser extends ActionBarActivity {
 
     //int select is used to keep track of position in urlList and prevent//
     //arrayOutOfBounds exceptions//
-    private int select = 0;
+    private int select = -1;
     private ProgressBar pd;
     private Bitmap currentBitmap;
 
@@ -59,55 +59,14 @@ public class image_browser extends ActionBarActivity {
         nextButton = (Button) findViewById(R.id.next);
         previousButton = (Button) findViewById(R.id.previous);
         imageView = (ImageView) findViewById(R.id.imageView);
+        urlList = gridViewThumbs.bigList;
+        Toast.makeText(context, urlList.get(0), Toast.LENGTH_SHORT).show();
         //onCreate receives intent from category_select and//
         //passes the string extra to getUrlTask//
         Intent intent = getIntent();
         starterUrl = intent.getStringExtra(GridViewActivity.URL_TO_BROWSER);
         getImage task = new getImage();
         task.execute(starterUrl);
-    }
-        //getUrlTask parses some html and generates a list of urls
-    private class getUrlTask extends AsyncTask<String, Void, ArrayList<String>> {
-        private Document doc = null;
-        public ArrayList<String> linkList = new ArrayList<String>();
-        @Override
-        protected ArrayList<String> doInBackground(String... params){
-            //starterUrl comes here
-            String rooturl = params[0];
-            try{
-                //pull full source of starterUrl. Thank you Jsoup
-                doc = Jsoup.connect(rooturl)
-                        .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0")
-                        .timeout(3000)
-                        .get();
-                //select and store links to .jpg files
-                Elements aList = doc.select("a");
-                for(Element link : aList){
-                    String href = link.attr("href");
-                    if(!href.contains("domain")&&href.contains(".jpg")){
-                        if(!linkList.contains(href)){
-                            linkList.add(href);
-                        }
-                    }
-                }
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-
-            return linkList;
-        }
-        @Override
-        protected void onPostExecute(ArrayList<String> result){
-            //the url in the first index of the generated list is passed//
-            //to setWallpaper and the next and previous//
-            //buttons are made visible.//
-            url = linkList.get(0);
-            urlList = linkList;
-            getImage initial = new getImage();
-            initial.execute(url);
-            nextButton.setVisibility(View.VISIBLE);
-            previousButton.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -150,6 +109,10 @@ public class image_browser extends ActionBarActivity {
         }
         @Override
         protected void onPostExecute(Bitmap result){
+            if(select == -1){
+                
+                select = GridViewActivity.index;
+            }
             currentBitmap = result;
             //the image is shown in the image view, but not set as the wallpaper//
             imageView.setImageBitmap(result);
@@ -163,9 +126,9 @@ public class image_browser extends ActionBarActivity {
         //splashes a toast message if user reaches the end of the url list//
         if(select < (urlList.size() - 1)) {
             select = select + 1;
-            url = urlList.get(select);
+            starterUrl = urlList.get(select);
             getImage setNext = new getImage();
-            setNext.execute(url);
+            setNext.execute(starterUrl);
         }else{
             Toast.makeText(getApplicationContext(), R.string.end_list, Toast.LENGTH_LONG).show();
         }
@@ -174,9 +137,9 @@ public class image_browser extends ActionBarActivity {
     public void onClickPrevious(View view){
         if(select>0) {
             select = select - 1;
-            url = urlList.get(select);
+            starterUrl = urlList.get(select);
             getImage setPrevious = new getImage();
-            setPrevious.execute(url);
+            setPrevious.execute(starterUrl);
         }else{
             Toast.makeText(getApplicationContext(), R.string.begin_list, Toast.LENGTH_LONG).show();
         }

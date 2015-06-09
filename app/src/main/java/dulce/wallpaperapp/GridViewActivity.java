@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class GridViewActivity extends Activity {
 
     public static String URL_TO_BROWSER = category_select.EXTRA_MESSAGE;
+    public static int index = 0;
     Context context = this;
     ArrayList<String> list = new ArrayList<String>();
 
@@ -27,6 +28,7 @@ public class GridViewActivity extends Activity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+                index = position;
                 list = gridViewThumbs.bigList;
                 Intent intent = new Intent(context, image_browser.class);
                 intent.putExtra(URL_TO_BROWSER, list.get(position));
