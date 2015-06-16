@@ -328,4 +328,10 @@ public class category_select extends ActionBarActivity {
         intent.putExtra(EXTRA_MESSAGE, starterUrl);
         startActivity(intent);
     }
+    public void sculptures(View view){
+        String starterUrl = "http://www.reddit.com/r/sculptureporn";
+        Intent intent = new Intent(this, gridViewThumbs.class);
+        intent.putExtra(EXTRA_MESSAGE, starterUrl);
+        startActivity(intent);
+    }
 }

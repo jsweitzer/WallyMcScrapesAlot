@@ -89,7 +89,13 @@ public class image_browser extends ActionBarActivity {
     private class getImage extends AsyncTask<String, Void, Bitmap> {
 
         BitmapFactory bf = new BitmapFactory();
+        BitmapFactory.Options opts = new BitmapFactory.Options();
         Bitmap result;
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File img = new File(path, "image.jpg");
+        String fullPath;
+        int h;
+        int w;
 
 
         @Override
@@ -101,16 +107,46 @@ public class image_browser extends ActionBarActivity {
         @Override
         protected Bitmap doInBackground(String... params) {
             try {
+
                 URL url = new URL(starterUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(connection.getInputStream());
-                result = bf.decodeStream(in);
-                //Need to set up temp file output stream to store
-                //compressed bitmap as jpeg and then assign temp file to result
-                //hopefully this will fix Bitmap too large to be uploaded into a texture issue.
-                //Scrollable imageView will allow display of high res images, but with
-                //very large uncompressed images there is out of mem issue
+                OutputStream out = new FileOutputStream(img);
+
+                byte data[] = new byte[1024];
+                long total = 0;
+                int count;
+
+                while ((count = in.read(data)) != -1) {
+                    total += count;
+                    // for progress update
+                    out.write(data, 0, count);
+                }
+
+                out.flush();
+                out.close();
                 in.close();
+
+
+
+                opts.inJustDecodeBounds = true;
+
+                fullPath = path+"/image.jpg";
+
+                bf.decodeFile(fullPath, opts);
+
+                h = opts.outHeight;
+                w = opts.outWidth;
+
+                if(h > 2480 || w > 2480){
+                    opts.inSampleSize = 2;
+                    opts.inJustDecodeBounds = false;
+                    result = bf.decodeFile(fullPath, opts);
+                }
+
+                System.out.println("height = "+h +"\nwidth = "+ w);
+
+
             }catch(IOException e){
                 e.printStackTrace();
             }
