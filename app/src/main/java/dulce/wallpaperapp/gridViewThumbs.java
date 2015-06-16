@@ -24,19 +24,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 
 public class gridViewThumbs extends Activity {
 
-    private ProgressBar pb;
     public static ArrayList<String> thumbList = new ArrayList<String>();
     public static ArrayList<String> bigList = new ArrayList<String>();
     Context context = this;
     public static ArrayList<Uri> thumbFilePaths = new ArrayList<Uri>();
     String starterUrl = "http://www.reddit.com/r/pics";
-
-    private static final String DISK_CACHE_SUBDIR = "thumbnails";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class gridViewThumbs extends Activity {
         @Override
         protected ArrayList<String> doInBackground(String... params){
 
-            String rootUrl = params[0];
             Document doc = null;
 
             try{
@@ -120,8 +117,10 @@ public class gridViewThumbs extends Activity {
                 File file = new File(path, thumbName);
                 Uri uri = Uri.fromFile(file);
                 thumbPaths.add(uri);
+
                 result = ImageLoader.getInstance().loadImageSync(thumbList.get(i));
 
+                //URL url = new URL(thumbList.get(i));
                 try{
                     path.mkdirs();
                     OutputStream out = new FileOutputStream(file);
@@ -142,15 +141,6 @@ public class gridViewThumbs extends Activity {
                 Intent intent = new Intent(context, GridViewActivity.class);
                 startActivity(intent);
 
-        }
-
-        public String getBigUrl(int i){
-            return bigList.get(i);
-        }
-
-        public void clearUrls(){
-            bigList.clear();
-            thumbList.clear();
         }
     }
 }

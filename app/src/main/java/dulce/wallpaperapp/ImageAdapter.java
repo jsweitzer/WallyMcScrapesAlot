@@ -48,7 +48,6 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
     private ArrayList<Uri> mThumbIds = gridViewThumbs.thumbFilePaths;
 }
 

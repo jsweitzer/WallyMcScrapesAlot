@@ -1,10 +1,5 @@
 package dulce.wallpaperapp;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import android.app.WallpaperManager;
 import android.content.ContentValues;
 import android.content.Context;

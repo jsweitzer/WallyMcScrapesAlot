@@ -1,65 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:background="#000000" android:padding="15dp">
 
+<ScrollView android:id="@+id/category_scroll" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/category_lin" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical">
+
     <Button
         android:id="@+id/nature_button"
-        android:drawableLeft="@drawable/ic_tree"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:onClick="nature"
-        android:background="#ff000000" />
+        android:background="#ff000000"
+        android:text="Nature"
+        android:textColor="#ffc8c8c8" />
     <Button
-        android:id="@+id/aww_button"
-        android:drawableLeft="@drawable/ic_kitten"
-        android:layout_width="wrap_content"
+        android:id="@+id/apophysis_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:onClick="aww"
-        android:background="#ff000000" />
+        android:onClick="apophysis"
+        android:background="#ff000000"
+        android:text="Fractals"
+        android:textColor="#ffc8c8c8" />
     <Button
         android:id="@+id/space_button"
-        android:drawableLeft="@drawable/ic_moon"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:onClick="space"
-        android:background="#ff000000" />
+        android:background="#ff000000"
+        android:text="Space"
+        android:textColor="#ffc8c8c8" />
     <Button
         android:id="@+id/random"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_random"
         android:onClick="random"
         android:background="#ff000000"
-        android:layout_alignTop="@+id/quotes"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="Art"
+        android:textColor="#ffc8c8c8" />
     <Button
         android:id="@+id/quotes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_quote"
         android:onClick="quote"
         android:background="#ff000000"
-        android:layout_below="@+id/space_button"
-        android:layout_alignLeft="@+id/space_button"
-        android:layout_alignStart="@+id/space_button"
-        android:layout_marginTop="52dp" />
+        android:text="Scifi"
+        android:textColor="#ffc8c8c8" />
     <Button
-        android:id="@+id/cars"
-        android:layout_width="wrap_content"
+        android:id="@+id/pics"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_car"
         android:onClick="cars"
         android:background="#ff000000"
-        android:layout_alignTop="@+id/quotes"
-        android:layout_alignLeft="@+id/aww_button"
-        android:layout_alignStart="@+id/aww_button" />
+        android:text="Random"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/beaches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="beaches"
+        android:background="#ff000000"
+        android:text="Beaches"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/bonsai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="bonsai"
+        android:background="#ff000000"
+        android:text="Bonsai"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/cities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cities"
+        android:background="#ff000000"
+        android:text="Cities"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/clouds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clouds"
+        android:background="#ff000000"
+        android:text="Clouds"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/comics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="comics"
+        android:background="#ff000000"
+        android:text="Comics"
+        android:textColor="#ffc8c8c8" />
+    <Button
+        android:id="@+id/food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="food"
+        android:background="#ff000000"
+        android:text="Food"
+        android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/design"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="design"
+            android:background="#ff000000"
+            android:text="Design"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/engineering"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="engineering"
+            android:background="#ff000000"
+            android:text="Engineering"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/longexposures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="longexposures"
+            android:background="#ff000000"
+            android:text="Long exopsure"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/fire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="fire"
+            android:background="#ff000000"
+            android:text="Fire"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/fossils"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="fossils"
+            android:background="#ff000000"
+            android:text="Fossils"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/futuristic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="futuristic"
+            android:background="#ff000000"
+            android:text="Futuristic"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/gaming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="gaming"
+            android:background="#ff000000"
+            android:text="Gaming"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/geology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="geology"
+            android:background="#ff000000"
+            android:text="Geology"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/guns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="guns"
+            android:background="#ff000000"
+            android:text="Guns"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/heavy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="heavy"
+            android:background="#ff000000"
+            android:text="Heavy"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="ice"
+            android:background="#ff000000"
+            android:text="Ice"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/illusion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="illusion"
+            android:background="#ff000000"
+            android:text="Illusion"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/cyber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cyber"
+            android:background="#ff000000"
+            android:text="Cyber"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/island"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="island"
+            android:background="#ff000000"
+            android:text="Islands"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/lakes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lakes"
+            android:background="#ff000000"
+            android:text="Lakes"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/lightning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="lightning"
+            android:background="#ff000000"
+            android:text="Lightning"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="light"
+            android:background="#ff000000"
+            android:text="Light"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/macro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="macro"
+            android:background="#ff000000"
+            android:text="Macro"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/maps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="maps"
+            android:background="#ff000000"
+            android:text="Maps"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/medieval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="medieval"
+            android:background="#ff000000"
+            android:text="Medieval"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/megalith"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="megalith"
+            android:background="#ff000000"
+            android:text="Megalith"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/micro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="micro"
+            android:background="#ff000000"
+            android:text="Micro"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/military"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="military"
+            android:background="#ff000000"
+            android:text="Military"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/mineral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="mineral"
+            android:background="#ff000000"
+            android:text="Mineral"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/mtg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="mtg"
+            android:background="#ff000000"
+            android:text="Mtg"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/mushrooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="mushrooms"
+            android:background="#ff000000"
+            android:text="Mushrooms"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/pixels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="pixels"
+            android:background="#ff000000"
+            android:text="Pixels"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/rivers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="rivers"
+            android:background="#ff000000"
+            android:text="Rivers"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/sculptures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sculptures"
+            android:background="#ff000000"
+            android:text="Sculptures"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/seacreatures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seacreatures"
+            android:background="#ff000000"
+            android:text="Seacreatures"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/silhouetteporn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="silhouettes"
+            android:background="#ff000000"
+            android:text="Silhouettes"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/starship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="starships"
+            android:background="#ff000000"
+            android:text="Starships"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/streetart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="streetart"
+            android:background="#ff000000"
+            android:text="Street Art"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/trains"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="trains"
+            android:background="#ff000000"
+            android:text="Trains"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/trippy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="trippy"
+            android:background="#ff000000"
+            android:text="Trippy"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="weather"
+            android:background="#ff000000"
+            android:text="Weather"
+            android:textColor="#ffc8c8c8" />
+        <Button
+            android:id="@+id/winter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="winter"
+            android:background="#ff000000"
+            android:text="Winter"
+            android:textColor="#ffc8c8c8" />
 
-</RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>
