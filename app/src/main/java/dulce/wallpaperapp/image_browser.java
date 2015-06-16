@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,9 +21,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -88,6 +88,9 @@ public class image_browser extends ActionBarActivity {
     //getImage gets the image and stores it as bitmap//
     private class getImage extends AsyncTask<String, Void, Bitmap> {
 
+        BitmapFactory bf = new BitmapFactory();
+        Bitmap result;
+
 
         @Override
         protected void onPreExecute(){
@@ -97,9 +100,20 @@ public class image_browser extends ActionBarActivity {
 
         @Override
         protected Bitmap doInBackground(String... params) {
-            ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
-            ImageLoader.getInstance().init(config.build());
-            Bitmap result = ImageLoader.getInstance().loadImageSync(starterUrl);
+            try {
+                URL url = new URL(starterUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream(connection.getInputStream());
+                result = bf.decodeStream(in);
+                //Need to set up temp file output stream to store
+                //compressed bitmap as jpeg and then assign temp file to result
+                //hopefully this will fix Bitmap too large to be uploaded into a texture issue.
+                //Scrollable imageView will allow display of high res images, but with
+                //very large uncompressed images there is out of mem issue
+                in.close();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
             return result;
         }
         @Override

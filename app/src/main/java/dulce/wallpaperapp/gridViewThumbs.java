@@ -9,12 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.widget.Toast;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,7 +38,6 @@ public class gridViewThumbs extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
-        //pd = (ProgressBar) findViewById(R.id.progress);
         //onCreate receives intent from category_select and//
         //passes the string extra to getUrlTask//
         thumbList.clear();
@@ -112,8 +105,6 @@ public class gridViewThumbs extends Activity {
 
             ArrayList<Uri> thumbPaths = new ArrayList<Uri>();
             String thumbName = null;
-            ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
-            ImageLoader.getInstance().init(config.build());
 
             BitmapFactory bf = new BitmapFactory();
 
