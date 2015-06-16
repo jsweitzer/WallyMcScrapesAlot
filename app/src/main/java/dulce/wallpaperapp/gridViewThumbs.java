@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,10 +21,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -111,6 +115,8 @@ public class gridViewThumbs extends Activity {
             ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
             ImageLoader.getInstance().init(config.build());
 
+            BitmapFactory bf = new BitmapFactory();
+
             for(int i = 0 ; i < thumbList.size() ; i ++) {
 
                 thumbName = "thumb"+i;
@@ -118,10 +124,13 @@ public class gridViewThumbs extends Activity {
                 Uri uri = Uri.fromFile(file);
                 thumbPaths.add(uri);
 
-                result = ImageLoader.getInstance().loadImageSync(thumbList.get(i));
-
-                //URL url = new URL(thumbList.get(i));
                 try{
+                    URL url = new URL(thumbList.get(i));
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    InputStream in = new BufferedInputStream(connection.getInputStream());
+
+                    result = bf.decodeStream(in);
+
                     path.mkdirs();
                     OutputStream out = new FileOutputStream(file);
                     result.compress(Bitmap.CompressFormat.PNG, 100, out);
