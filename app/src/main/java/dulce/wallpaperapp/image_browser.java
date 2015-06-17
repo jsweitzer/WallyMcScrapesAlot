@@ -88,12 +88,10 @@ public class image_browser extends ActionBarActivity {
     //getImage gets the image and stores it as bitmap//
     private class getImage extends AsyncTask<String, Void, Bitmap> {
 
-        BitmapFactory bf = new BitmapFactory();
-        BitmapFactory.Options opts = new BitmapFactory.Options();
         Bitmap result;
         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File img = new File(path, "image.jpg");
-        String fullPath;
+        String fullPath = path+"/image.jpg";;
         int h;
         int w;
 
@@ -127,25 +125,24 @@ public class image_browser extends ActionBarActivity {
                 out.close();
                 in.close();
 
+                h = imageUtil.getHeight(fullPath);
+                w = imageUtil.getWidth(fullPath);
 
+                System.out.println("height = " + h +"\nwidth = "+ w);
 
-                opts.inJustDecodeBounds = true;
+                if(h > 2000 || w > 2000){
 
-                fullPath = path+"/image.jpg";
+                    System.out.println("made it in the loop");
+                    result = imageUtil.getCompressedImg(fullPath);
+                    if(result == null){
+                        System.out.println("IT'S NULL SHIT!?");
+                    }
 
-                bf.decodeFile(fullPath, opts);
+                }else if(h < 2000 && w < 2000){
 
-                h = opts.outHeight;
-                w = opts.outWidth;
-
-                if(h > 2480 || w > 2480){
-                    opts.inSampleSize = 2;
-                    opts.inJustDecodeBounds = false;
-                    result = bf.decodeFile(fullPath, opts);
+                    System.out.println("made it in the second loop");
+                    result = imageUtil.getImg(fullPath);
                 }
-
-                System.out.println("height = "+h +"\nwidth = "+ w);
-
 
             }catch(IOException e){
                 e.printStackTrace();
@@ -157,11 +154,10 @@ public class image_browser extends ActionBarActivity {
             if(select == -1){
                 select = GridViewActivity.index;
             }
-            currentBitmap = result;
-            //the image is shown in the image view, but not set as the wallpaper//
+            //System.out.println("result contents @ postexecute = "+result.getByteCount());
             imageView.setImageBitmap(result);
+            currentBitmap = result;
             pd.setVisibility(View.INVISIBLE);
-            Toast.makeText(context, starterUrl, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -188,55 +184,19 @@ public class image_browser extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), R.string.begin_list, Toast.LENGTH_LONG).show();
         }
     }
-    //onClickSave sets the image currently being displayed as the background//
+    //set bitmap in imageView as background
     public void onClickSave(View view){
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File file = new File(path, "currentPic.png");
-        try {
-            path.mkdirs();
-            OutputStream out = new FileOutputStream(file);
-            currentBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.close();
-            Uri uri = Uri.fromFile(file);
-            Uri content_uri = getImageContentUri(this, file);
-            //WallpaperManager.getInstance(context).setBitmap(currentBitmap);
-            Intent intent = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(content_uri);
+
+        File file = new File(imageUtil.filePath, "Chosen.png");
+        imageUtil.saveImage(file, currentBitmap);
+
+        if(file.exists()) {
+            Uri uri = imageUtil.getImageUri(this, file);
+            Intent intent = WallpaperManager.getInstance(context).getCropAndSetWallpaperIntent(uri);
             startActivity(intent);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    public static Uri getImageContentUri(Context context, File imageFile){
-
-        String filePath = imageFile.getAbsolutePath();
-
-        Cursor cursor = context.getContentResolver().query(
-
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[] {MediaStore.Images.Media._ID},
-                MediaStore.Images.Media.DATA + "=?",
-                new String[] {filePath}, null);
-
-        if (cursor != null && cursor.moveToFirst()){
-
-            int id = cursor.getInt(cursor
-            .getColumnIndex(MediaStore.MediaColumns._ID));
-          Uri baseUri = Uri.parse("content://media/external/images/media");
-          return Uri.withAppendedPath(baseUri, "" + id);
-
         }else{
-            if(imageFile.exists()) {
-
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.DATA, filePath);
-
-                return context.getContentResolver().insert(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
-            }else{
-                    return null;
-                }
-            }
+            Toast.makeText(context, "Image could not be set as wallpaper", Toast.LENGTH_SHORT).show();
         }
     }
+}
 
