@@ -1,3 +1,3 @@
 # WallyMcScrapesAlot
 
-Pulls images from popular subreddits and allows you to set them as your wallpaper
+An android app that pulls images from popular subreddits and allows the user to set them as their wallpaper
